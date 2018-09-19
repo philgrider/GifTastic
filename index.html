@@ -5,14 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/reset.css">    
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
 </head>
 <body>
-
+    <div class="jumbotron jumbotron-fluid" id="background-color">
+        <h1 class="display-4 text-center text-light">Gif Tastic Animals Website!</h1>
+        <p class="h3 text-center text-light">Choose an animal below to see a set of gifs related to it. Have fun!</p>
+    </div>
+    <div class="m-5" id="animals-container" >
+     
+    </div>
+    <div class="d-flex p2 bd-highlight">
+    <div class=" row col-8 gif" id="gify-container">
+        
+    </div>
+    <div class="col-2 ml-5">
+        <form>
+            <div class="form-group">
+                <label for="animalAdd">Add an animal:</label>
+                <input type="text" class="form-control" id="new-animal" placeholder="Choose a new animal">
+            </div>
+            <button type="submit" id="add-animal" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
     <!-- bootstrap Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- My Javascript -->
+    <script src="./assets/javascript/app.js"></script>
 </body>
 </html>
