@@ -1,3 +1,7 @@
 #background-color{
     background-color: blue;
 }
+#word-wrap{
+    word-wrap: break-word;
+    max-width: 200px;
+}
