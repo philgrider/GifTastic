@@ -1,7 +1,5 @@
 // don't forget about the ready().
 $(document).ready(function () {
-    console.log('widnow size' + $(this).width());
-
     var animalObject = {
         topics: [
             'dog',
@@ -26,15 +24,14 @@ $(document).ready(function () {
             }
         },
 
-        buildGifs: function (results) { // Build buttons and check for mobile status
+        buildGifs: function (results,numberToDownload) { // Build buttons and check for mobile status
             $gifyDiv.empty();
-            console.log('Build Mobile ? ' + animalObject.mobile);
+            console.log('number to download ? ' + numberToDownload);
             if (this.mobile === true) {
-                for (var i = 0; i < results.length; i++) {
+                for (var i = 0; i < numberToDownload; i++) {
                     var $animalGifyDiv = $('<div>').attr('class','d-flex row col-md-5 col-lg-3');
                     var $pTitle = $('<p>').attr('class', 'col-md-11 m-2 text-capitalize').text('Title: ' + results[i].title);
                     var $pRating = $('<p>').attr('class', 'col-md-11 m-2 text-uppercase').text('Rating: ' + results[i].rating);
-                    var $bdownload = $('<button>').attr('class', 'col-md-11 btn btn-secondary').text('Download');
                     var $image = $('<img>').attr({
                         'class': 'col-md-12 m-2',
                         'src': results[i].images.fixed_height_small_still.url,
@@ -42,16 +39,15 @@ $(document).ready(function () {
                         'data-animate': results[i].images.fixed_height_small.url,
                         'data-state': 'still'
                     });
-                    $animalGifyDiv.append($pTitle, $pRating, $bdownload, $image);
-                    $gifyDiv.prepend($animalGifyDiv);
+                    $animalGifyDiv.append($pTitle, $pRating, $image);
+                    $gifyDiv.append($animalGifyDiv);
                 };
             }
             else {
-                for (var i = 0; i < results.length; i++) {
+                for (var i = 0; i < numberToDownload; i++) {
                     var $animalGifyDiv = $('<div>').attr('class','d-flex row col-md-5 col-lg-3 justify-content-center');
                     var $pTitle = $('<p>').attr('class', 'col-md-11 m-2 text-capitalize').text('Title: ' + results[i].title);
                     var $pRating = $('<p>').attr('class', 'col-md-11 m-2 text-uppercase').text('Rating: ' + results[i].rating);
-                    var $bdownload = $('<button>').attr('class', 'col-md-11 btn btn-secondary').text('Download');
                     var $image = $('<img>').attr({
                         'class': 'col-md-12 m-2',
                         'src': results[i].images.fixed_height_still.url,
@@ -59,10 +55,10 @@ $(document).ready(function () {
                         'data-animate': results[i].images.fixed_height.url,
                         'data-state': 'still'
                     });
-                    $animalGifyDiv.append($pTitle, $pRating, $bdownload, $image);
-                    $gifyDiv.prepend($animalGifyDiv);
+                    $animalGifyDiv.append($pTitle, $pRating, $image);
+                    $gifyDiv.append($animalGifyDiv);
                 };
-            };
+            }
         },
         checkSize: function () {
             console.log('widnow size' + $(window).width());
@@ -105,24 +101,22 @@ $(document).ready(function () {
 
     })
     var resultsValue = '';
-
     // find Gifs
     $('#animals-container').on('click', 'button', function () {
         animalObject.gifySelected = true;
         $gifyDiv.empty();
-        animalObject.animalChoice = $(this).attr('data-animal');
+        animalObject.animalChoice = $(this).attr('data-animal'); 
+        var downloadNumber = $('.form-control option:selected').val();
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             animalObject.animalChoice +
-            "&api_key=dc6zaTOxFJmzC&limit=10";
+            "&api_key=dc6zaTOxFJmzC";
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
             resultsValue = response.data;
-            animalObject.buildGifs(resultsValue);
+            animalObject.buildGifs(resultsValue,downloadNumber);
         });
-
-
     });
     // play and stop gifs
     $('.gif').unbind('click').on('click', 'img', function (event) {
@@ -137,6 +131,14 @@ $(document).ready(function () {
             $(this).attr('src', $(this).attr('data-still'));
             $(this).attr('data-state', 'still');
         }
+    });
+    $(".form-control").change(function(){
+        var changeNumber = $(".form-control option:selected").val();
+        if(animalObject.animalChoice){
+            
+            animalObject.buildGifs(resultsValue,changeNumber);
+        }
+
     });
 
 });
