@@ -23,7 +23,6 @@ $(document).ready(function () {
                 $animalDiv.append($animalBtn);
             }
         },
-
         buildGifs: function (results,numberToDownload) { // Build buttons and check for mobile status
             $gifyDiv.empty();
             console.log('number to download ? ' + numberToDownload);
