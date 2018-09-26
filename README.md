@@ -7,3 +7,8 @@
     selected an animal the selector will automatically update the page with new number of gifs to show.
 6. Also added funtionality between mobile devices. Should work on phones and tablets.
 7. Have fun with the gifs some are pretty funny.
+
+
+https://github.com/philgrider/GifTastic
+
+https://philgrider.github.io/GifTastic/
